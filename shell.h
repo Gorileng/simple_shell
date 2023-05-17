@@ -75,25 +75,27 @@ typedef struct liststr
  */
 typedef struct passinfo
 {
-	char *arg;
-	char **argv;
+
 	char *path;
 	int argc;
-	unsigned int line_count;
-	int err_num;
+	char *arg;
+	char **argv;
 	int linecount_flag;
 	char *fname;
+	unsigned int line_count;
+	int err_num;
 	list_t *env;
 	list_t *history;
-	list_t *alias;
-	char **environ;
 	int env_changed;
 	int status;
-
-	char **cmd_buf; 
-	int cmd_buf_type; 
+	list_t *alias;
+	char **environ;
+	
 	int readfd;
 	int histcount;
+	char **cmd_buf; 
+	int cmd_buf_type; 	
+	
 } info_t;
 
 #define INFO_INIT \
@@ -111,14 +113,14 @@ typedef struct builtin
 	int (*func)(info_t *);
 } builtin_table;
 
-int hsh(info_t *, char **);
-int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
+int hsh(info_t *, char **);
+int find_builtin(info_t *);
 
-char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 int is_cmd(info_t *, char *);
+char *dup_chars(char *, int, int);
 
 int loophsh(char **);
 
