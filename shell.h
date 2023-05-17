@@ -63,10 +63,10 @@ typedef struct liststr
  * @linecount_flag: count the line of input
  * @fname: filename of the program
  * @env: local linked list will copy in the environ
- * @environ: copy environ custom modified from LL env
+ * @environ: copy environ custom altered from LL env
  * @history: history node
  * @alias: alias node
- * @env_changed: if environ changed on
+ * @env_changed: if environ altered on
  * @status: return the status of last exec'd command
  * @cmd_buf: on if chaining, cmd_buf from address of the pointer
  * @cmd_buf_type: the CMD_type ||, &&, ;
