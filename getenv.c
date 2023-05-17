@@ -22,7 +22,7 @@ char **get_environ(info_t *info)
  * @info: Structure contains the potential arguments. that are used to maintain
  *        constant function of the prototype.
  *  Return: 1 delete, 0 otherwise
- * @var: string env var property
+ * @var: string of env var property
  */
 int _unsetenv(info_t *info, char *var)
 {
@@ -54,8 +54,8 @@ int _unsetenv(info_t *info, char *var)
  *             or alter the existing one
  * @info: Structure contains the potential arguments. that are used to maintain
  *        constant function of the prototype.
- * @var: string env var property
- * @value: string env var value
+ * @var: string of env var property
+ * @value: string of env var value
  *  Return: Always 0
  */
 int _setenv(info_t *info, char *var, char *value)

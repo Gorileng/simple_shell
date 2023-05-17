@@ -29,7 +29,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 			if ((*buf)[x - 1] == '\n')
 			{
 				(*buf)[x - 1] = '\0'; /* remove trailing newline */
-				r--;
+				x--;
 			}
 			info->linecount_flag = 1;
 			remove_comments(*buf);
@@ -160,7 +160,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
  * sigintHandler - block the ctrl-C
  * @sig_num: signal number
  *
- * Return: void
+ * Return: the void
  */
 void sigintHandler(__attribute__((unused))int sig_num)
 {
