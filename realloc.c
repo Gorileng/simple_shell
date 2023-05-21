@@ -1,47 +1,47 @@
 #include "shell.h"
 
 /**
- * _memset - fills memory with a constant byte
- * @s: the pointer to the memory area
- * @b: the byte to fill *s with
- * @n: the amount of bytes to be filled
- * Return: (s) a pointer to the memory area s
+ * _memset - fill the memory with constant byte
+ * @w: pointer to memory area
+ * @v: byte that fill *w with
+ * @n: amount of bytes that are to be filled
+ * Return: (w) pointer to memory area w
  */
-char *_memset(char *s, char b, unsigned int n)
+char *_memset(char *w, char v, unsigned int n)
 {
 	unsigned int i;
 
 	for (i = 0; i < n; i++)
-		s[i] = b;
-	return (s);
+		w[i] = v;
+	return (w);
 }
 
 /**
- * ffree - frees a string of strings
- * @pp: string of strings
+ * ffree - free string of strings
+ * @qq: the string of strings
  */
-void ffree(char **pp)
+void ffree(char **qq)
 {
-	char **a = pp;
+	char **a = qq;
 
-	if (!pp)
+	if (!qq)
 		return;
-	while (*pp)
-		free(*pp++);
+	while (*qq)
+		free(*qq++);
 	free(a);
 }
 
 /**
- * _realloc - reallocates a block of memory
- * @ptr: pointer to previous malloc'ated block
- * @old_size: byte size of previous block
- * @new_size: byte size of new block
+ * _realloc - it reallocate the block of the memory
+ * @ptr: the pointer to the previous malloc'ated block
+ * @old_size: the byte size of the previous block
+ * @new_size: the byte size of the new block
  *
- * Return: pointer to da ol'block nameen.
+ * Return: the pointer to the da ol'block nameen.
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	char *p;
+	char *q;
 
 	if (!ptr)
 		return (malloc(new_size));
@@ -50,14 +50,14 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (new_size == old_size)
 		return (ptr);
 
-	p = malloc(new_size);
-	if (!p)
+	q = malloc(new_size);
+	if (!q)
 		return (NULL);
 
 	old_size = old_size < new_size ? old_size : new_size;
 	while (old_size--)
-		p[old_size] = ((char *)ptr)[old_size];
+		q[old_size] = ((char *)ptr)[old_size];
 	free(ptr);
-	return (p);
+	return (q);
 }
 
