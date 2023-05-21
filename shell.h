@@ -47,8 +47,7 @@ typedef struct liststr
 {
 	int num;
 	char *str;
-	struct liststr *next; 
-
+	struct liststr *next;
 } list_t;
 
 /**
@@ -63,10 +62,10 @@ typedef struct liststr
  * @linecount_flag: count the line of input
  * @fname: filename of the program
  * @env: local linked list will copy in the environ
- * @environ: copy environ custom altered from LL env
+ * @environ: copy the environ custom changed from LL env
  * @history: history node
  * @alias: alias node
- * @env_changed: if environ altered on
+ * @env_changed: if environ changed on
  * @status: return the status of last exec'd command
  * @cmd_buf: on if chaining, cmd_buf from address of the pointer
  * @cmd_buf_type: the CMD_type ||, &&, ;
@@ -75,27 +74,27 @@ typedef struct liststr
  */
 typedef struct passinfo
 {
-
-	char *path;
-	int argc;
 	char *arg;
 	char **argv;
-	int linecount_flag;
-	char *fname;
+	char *path;
+	int argc;
 	unsigned int line_count;
 	int err_num;
+	int linecount_flag;
+	char *fname;
 	list_t *env;
 	list_t *history;
-	int env_changed;
-	int status;
 	list_t *alias;
 	char **environ;
+	int env_changed;
+	int status; 
 	
+	char **cmd_buf; 
+	int cmd_buf_type; 
 	int readfd;
 	int histcount;
-	char **cmd_buf; 
-	int cmd_buf_type; 	
 	
+
 } info_t;
 
 #define INFO_INIT \
@@ -103,7 +102,7 @@ typedef struct passinfo
 		0, 0, 0}
 
 /**
- * struct builtin - builtin string contained and relatable function
+ * struct builtin - builtin string and relatable function contained 
  * @type: command flag of the builtin
  * @func: function
  */
@@ -118,16 +117,16 @@ void fork_cmd(info_t *);
 int hsh(info_t *, char **);
 int find_builtin(info_t *);
 
+char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 int is_cmd(info_t *, char *);
-char *dup_chars(char *, int, int);
 
 int loophsh(char **);
 
 int _putfd(char b, int fd);
 int _putsfd(char *str, int fd);
-void _eputs(char *);
 int _eputchar(char);
+void _eputs(char *);
 
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
@@ -139,9 +138,9 @@ int _putchar(char);
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
 
+char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 char *_strncpy(char *, char *, int);
-char *_strncat(char *, char *, int);
 
 char **strtow2(char *, char);
 char **strtow(char *, char *);
@@ -174,18 +173,18 @@ int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
 ssize_t get_input(info_t *);
 
+void set_info(info_t *, char **);
 void free_info(info_t *, int);
 void clear_info(info_t *);
-void set_info(info_t *, char **);
 
-int _mysetenv(info_t *);
 int _myunsetenv(info_t *);
 int populate_env_list(info_t *);
 char *_getenv(info_t *, const char *);
 int _myenv(info_t *);
+int _mysetenv(info_t *);
 
 int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *); 
+int _setenv(info_t *, char *, char *);
 char **get_environ(info_t *);
 
 int read_history(info_t *info);
@@ -200,11 +199,11 @@ void free_list(list_t **);
 list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);
 
-size_t print_list(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 size_t list_len(const list_t *);
 char **list_to_strings(list_t *);
+size_t print_list(const list_t *);
 
 int replace_alias(info_t *);
 int replace_vars(info_t *);
@@ -213,3 +212,5 @@ int is_chain(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
 
 #endif
+
+
